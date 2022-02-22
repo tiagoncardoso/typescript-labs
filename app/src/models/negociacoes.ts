@@ -1,14 +1,19 @@
-import { Negociacao } from "./negociacao";
+import { Imprimivel } from "../utils/imprimivel.js";
+import { Negociacao } from "./negociacao.js";
 
-export class Negociacoes {
+export class Negociacoes extends Imprimivel {
     private negociacoes: Array<Negociacao> = [];
 
-    adiciona(negociacao: Negociacao): void {
+    public adiciona(negociacao: Negociacao): void {
         this.negociacoes.push(negociacao);
     }
 
-    lista(): ReadonlyArray<Negociacao> {
+    public lista(): ReadonlyArray<Negociacao> {
         // return [...this.negociacoes]; => Spread Operator
         return this.negociacoes;
+    }
+
+    public paraTexto(): string {
+        return JSON.stringify(this.negociacoes, null, 2);
     }
 }

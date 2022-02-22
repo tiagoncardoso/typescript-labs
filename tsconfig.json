@@ -2,7 +2,7 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "rootDir": "./app/src",
-        "outDir": "./app/dist/js",
+        "outDir": "./app/dist",
         "target": "ES6",
         "noEmitOnError": true,
         "noImplicitAny": true,
