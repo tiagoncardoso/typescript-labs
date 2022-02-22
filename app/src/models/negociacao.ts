@@ -1,15 +1,13 @@
 import { imprimir } from "../utils/imprimir";
-import { Imprimivel } from "../utils/imprimivel.js";
+import { Imprimivel } from "../interfaces/imprimivel.js";
 
-export class Negociacao extends Imprimivel {
+export class Negociacao implements Imprimivel {
 
     constructor(
         private _data: Date,
         public readonly quantidade: number,
         public readonly valor: number
-    ) {
-        super();
-    }
+    ) { }
 
     get data(): Date {
         // Programação defensiva: retona sempre o valor de instância
