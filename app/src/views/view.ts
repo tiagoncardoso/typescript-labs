@@ -1,6 +1,9 @@
+import { escapar } from "../decorator/escapar.js";
+import { inspecionar } from "../decorator/inspecionar.js";
+import { logarTempoDeExecucao } from "../decorator/logar-tempo-de-execucao.js";
+
 export abstract class View<T> {
     protected elemento: HTMLElement;
-    private escapar = false;
 
     constructor(seletor: string, escapar?: boolean) {
         const elemento = document.querySelector(seletor);
@@ -15,13 +18,6 @@ export abstract class View<T> {
     protected abstract template(model: T): string;
 
     public update(model: T): void {
-        let template = this.template(model);
-
-        if (this.escapar) {
-            template = template
-                .replace(/<script>[\s\S]*?<\/script>/, '');
-        }
-
-        this.elemento.innerHTML = template;
+        this.elemento.innerHTML = this.template(model);
     }
 }
