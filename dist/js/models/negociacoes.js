@@ -6,7 +6,6 @@ export class Negociacoes {
         this.negociacoes.push(negociacao);
     }
     lista() {
-        // return [...this.negociacoes]; => Spread Operator
         return this.negociacoes;
     }
 }

@@ -1,17 +1,27 @@
-export class View<T> {
+export abstract class View<T> {
     protected elemento: HTMLElement;
+    private escapar = false;
 
-    constructor(seletor: string) {
-        this.elemento = document.querySelector(seletor);
+    constructor(seletor: string, escapar?: boolean) {
+        const elemento = document.querySelector(seletor);
+
+        if (elemento) {
+            this.elemento = <HTMLElement> elemento;
+        } else {
+            throw Error(`Seletor ${seletor} não existe no DOM. Verifique o nome do seletor passado.`);
+        }
     }
 
-    template(model: T): string {
-        throw Error('É necessário sobrescrever o método template para todas as classes que extendem de View');
-    }
+    protected abstract template(model: T): string;
 
-    update(model: T): void {
-        const elemento = this.template(model);
+    public update(model: T): void {
+        let template = this.template(model);
 
-        this.elemento.innerHTML = elemento;
+        if (this.escapar) {
+            template = template
+                .replace(/<script>[\s\S]*?<\/script>/, '');
+        }
+
+        this.elemento.innerHTML = template;
     }
 }

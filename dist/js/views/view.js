@@ -1,12 +1,20 @@
 export class View {
-    constructor(seletor) {
-        this.elemento = document.querySelector(seletor);
-    }
-    template(model) {
-        throw Error('É necessário sobrescrever o método template para todas as classes que extendem de View');
+    constructor(seletor, escapar) {
+        this.escapar = false;
+        const elemento = document.querySelector(seletor);
+        if (elemento) {
+            this.elemento = elemento;
+        }
+        else {
+            throw Error(`Seletor ${seletor} não existe no DOM. Verifique o nome do seletor passado.`);
+        }
     }
     update(model) {
-        const elemento = this.template(model);
-        this.elemento.innerHTML = elemento;
+        let template = this.template(model);
+        if (this.escapar) {
+            template = template
+                .replace(/<script>[\s\S]*?<\/script>/, '');
+        }
+        this.elemento.innerHTML = template;
     }
 }
