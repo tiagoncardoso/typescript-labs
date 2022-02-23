@@ -11,3 +11,4 @@ export function inspecionar() {
         return descriptor;
     };
 }
+//# sourceMappingURL=inspecionar.js.map

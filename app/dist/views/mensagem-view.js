@@ -10,3 +10,4 @@ export class MensagemView extends View {
         this.elemento.innerHTML = template;
     }
 }
+//# sourceMappingURL=mensagem-view.js.map

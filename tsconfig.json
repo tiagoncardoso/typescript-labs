@@ -8,6 +8,7 @@
         "noImplicitAny": true,
         "removeComments": true,
         "strictNullChecks": true,
+        "sourceMap": true,
     },
     "include": [
         "app/src/**/*"

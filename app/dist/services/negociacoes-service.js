@@ -21,3 +21,4 @@ export class NegociacoesDoDiaService {
         });
     }
 }
+//# sourceMappingURL=negociacoes-service.js.map
